@@ -1,0 +1,20 @@
+{
+    "download_unsigned": true,
+
+    "target_directory": "/home/csrobot/MOADv2/data",
+
+    "objects_to_download": "all",
+    "data_to_download": {
+        "rgb": true,
+        "realsense": true,
+        "cad_model": true,
+        "fused_model": {
+            "raw_cloud": true,
+            "raw_mesh": true,
+            "obj_mesh": true,
+            "usd_mesh": true,
+            "blender_file": true,
+            "baked_texture": false
+        }
+    }
+}
