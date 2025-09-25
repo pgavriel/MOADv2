@@ -3,9 +3,10 @@
 
     "target_directory": "/home/csrobot/MOADv2/data",
 
-    "objects_to_download": "all",
+    "objects_to_download": "demo_set",
     "data_to_download": {
         "rgb": true,
+        "pose_reconstruction": true,
         "realsense": true,
         "cad_model": true,
         "fused_model": {
@@ -13,8 +14,7 @@
             "raw_mesh": true,
             "obj_mesh": true,
             "usd_mesh": true,
-            "blender_file": true,
-            "baked_texture": false
+            "blender_file": true
         }
     }
 }

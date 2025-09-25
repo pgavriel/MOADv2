@@ -1,5 +1,42 @@
 {
+    "demo_set": [
+        "atb1_gear-large"
+    ],
+
     "atb1": [
-        "list object names"
+        "atb1_board-full",
+        "atb1_board-empty",
+        "atb1_bar-16mm",
+        "atb1_bar-12mm",
+        "atb1_bar-8mm",
+        "atb1_bar-4mm",
+        "atb1_conn-bnc",
+        "atb1_conn-bnc-f",
+        "atb1_conn-bnc-complete",
+        "atb1_conn-dsub",
+        "atb1_conn-dsub-f",
+        "atb1_conn-dsub-complete",
+        "atb1_conn-ethernet",
+        "atb1_conn-ethernet-f",
+        "atb1_conn-ethernet-complete",
+        "atb1_conn-usb",
+        "atb1_conn-usb-f",
+        "atb1_conn-usb-complete",
+        "atb1_conn-wp",
+        "atb1_conn-wp-f",
+        "atb1_conn-wp-complete",
+        "atb1_gear-large",
+        "atb1_gear-medium",
+        "atb1_gear-small",
+        "atb1_gear-plate",
+        "atb1_gear-plate-complete",
+        "atb1_nut-m16",
+        "atb1_nut-m12",
+        "atb1_nut-m8",
+        "atb1_nut-m4",
+        "atb1_rod-16mm",
+        "atb1_rod-12mm",
+        "atb1_rod-8mm",
+        "atb1_rod-4mm"
     ]
 }
