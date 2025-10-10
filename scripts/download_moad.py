@@ -21,6 +21,7 @@ class MOADv2_Downloader:
         
         # Setup target directory
         self.target_dir = config["target_directory"]
+        print(f"Target Download Directory: {self.target_dir}")
         try:
             os.makedirs(self.target_dir, exist_ok=True)
             print(f"Target Directory '{self.target_dir}' created or already exists.")
@@ -74,7 +75,10 @@ class MOADv2_Downloader:
         Download datasets from S3 based on config rules.
         """
         data_cfg = self.config["data_to_download"]
-
+        if data_cfg.get("rgb", False):
+            print("WARNING: RGB data can take a long time to download, continue? (This can be configured in downloader_config.json)")
+            input("YES: [Enter]\t\tNO: [Ctrl+C]")
+            
         for obj in self.object_list:
             obj_prefix = f"{obj}/"
             obj_local = os.path.join(self.target_dir, obj)
@@ -192,11 +196,12 @@ if __name__ == "__main__":
         config = json.load(f)
     print(f"Config Loaded:\n{json.dumps(config, indent=4)}")
 
-    # Load Object names
+    # Load valid Object names
     with open(join(config_directory, "objects.json"), "r") as f:
         objects = json.load(f)
     print(f"Objects Master List:\n{json.dumps(objects, indent=4)}")
 
+    # Assemble list of objects to download data for
     to_download = config["objects_to_download"]
     if to_download in objects.keys():
         objects = objects[to_download]

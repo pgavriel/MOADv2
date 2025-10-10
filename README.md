@@ -12,7 +12,7 @@ python3 scripts/download_moad.py
 #### Downloadable Data Formats 
 * **RGB** - Most objects were scanned in two different poses, and each pose contains 360 24 megapixel (6000x4000) images capturing all angles of the object. Captured using Canon Rebel SL3 DSLR cameras. This option also includes a **camera_config.json** file which describes the camera settings during capture, and **transforms.json** which defines the virtual camera pose for each image. *NOTE: This data (1.6GB / pose) takes a long time to download.*  
 * **Pose Reconstruction** - The RGB images were used to train a NeRF reconstruction of each object scan, and this option will download a dense (5 million points) point cloud which was exported from that trained model.  
-* **Realsense** - Each object pose also contains 360 colored pointclouds captured at 640x480 resolution, and transformed such that they all align with each other, givenCaptured using Realsense D455 depth cameras.  
+* **Realsense** - Each object pose also contains 360 colored pointclouds captured at 640x480 resolution, and transformed such that they all align with each other. Captured using Realsense D455 depth cameras.  
 * **CAD Model** - CAD model of the object.  
 * **Fused Model** - All data associated with multiple poses of the object being fused together to create complete object models.  
     * **Raw Cloud (.ply)** - This is the result of fusing the reconstruction pointclouds together from multiple poses to get a pointcloud of the entire object. All background points have been removed.  

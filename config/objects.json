@@ -38,5 +38,23 @@
         "atb1_rod-12mm",
         "atb1_rod-8mm",
         "atb1_rod-4mm"
+    ],
+
+    "atb2": [
+        "atb2_chain", 
+        "atb2_chain-sprocket-large", 
+        "atb2_chain-sprocket-small", 
+        "atb2_chain-sprocket-spacer-large", 
+        "atb2_chain-sprocket-spacer-small", 
+        "atb2_chain-tensioner", 
+        "atb2_round-belt", 
+        "atb2_round-pulley-large", 
+        "atb2_round-pulley-small", 
+        "atb2_round-tensioner", 
+        "atb2_timing-belt", 
+        "atb2_timing-pulley-large", 
+        "atb2_timing-pulley-small", 
+        "atb2_timing-spacer-large",
+        "atb2_timing-spacer-small"
     ]
 }
