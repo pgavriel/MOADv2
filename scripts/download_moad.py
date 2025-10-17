@@ -40,6 +40,14 @@ class MOADv2_Downloader:
             self.s3 = boto3.client("s3")
         print("S3 Client Started...")
 
+    def folder_exists(self, prefix):
+        response = self.s3.list_objects_v2(
+            Bucket=self.bucket_name,
+            Prefix=prefix if prefix.endswith('/') else prefix + '/',
+            MaxKeys=1
+        )
+        return 'Contents' in response
+    
     def list_pose_folders(self, obj_prefix):
         """
         Return a list of pose-* folder names for a given object prefix.
@@ -62,6 +70,7 @@ class MOADv2_Downloader:
         self.s3.download_file(self.bucket_name, s3_key, local_path)
 
     def download_prefix(self, prefix, local_root):
+        file_found = False
         paginator = self.s3.get_paginator("list_objects_v2")
         for page in paginator.paginate(Bucket=self.bucket_name, Prefix=prefix):
             for obj in page.get("Contents", []):
@@ -69,6 +78,8 @@ class MOADv2_Downloader:
                 rel_path = os.path.relpath(s3_key, prefix)
                 local_path = os.path.join(local_root, rel_path)
                 self.download_file(s3_key, local_path)
+                file_found = True
+        if not file_found: print("File not found.")
 
     def download_objects(self):
         """
@@ -83,6 +94,9 @@ class MOADv2_Downloader:
             obj_prefix = f"{obj}/"
             obj_local = os.path.join(self.target_dir, obj)
             print(f"\n📦 Processing object: {obj}")
+            if not self.folder_exists(obj):
+                print(f"❌ Folder not found in bucket: {obj}")
+                continue
 
             # --- list pose folders dynamically ---
             pose_folders = self.list_pose_folders(obj_prefix)
@@ -138,7 +152,7 @@ class MOADv2_Downloader:
             # --- Fused Model ---
             if "fused_model" in data_cfg:
                 fused_cfg = data_cfg["fused_model"]
-                print("\n  ▶ Fused model")
+                if any(fused_cfg.values()): print("\n  ▶ Fused model")
 
                 fused_prefix = f"{obj_prefix}fused/"
                 fused_local = os.path.join(obj_local, "fused")
@@ -183,6 +197,7 @@ class MOADv2_Downloader:
                     self.download_file(s3_key, local_path)
 
             print("\n\n\nDone.")
+        print("\n\n== Finished All Objects ==")
 
 # === MAIN === 
 # --- Load config and run ---
@@ -192,14 +207,16 @@ if __name__ == "__main__":
     print(f"Script Dir: {script_directory}")
     config_directory = join(script_directory, "../config")
     print(f"Config Dir: {config_directory}")
-    with open(join(config_directory, "downloader_config.json"), "r") as f:
-        config = json.load(f)
-    print(f"Config Loaded:\n{json.dumps(config, indent=4)}")
 
     # Load valid Object names
     with open(join(config_directory, "objects.json"), "r") as f:
         objects = json.load(f)
     print(f"Objects Master List:\n{json.dumps(objects, indent=4)}")
+
+    with open(join(config_directory, "downloader_config.json"), "r") as f:
+        config = json.load(f)
+    print(f"Config Loaded:\n{json.dumps(config, indent=4)}")
+
 
     # Assemble list of objects to download data for
     to_download = config["objects_to_download"]

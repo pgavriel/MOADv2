@@ -1,6 +1,8 @@
 {
     "demo_set": [
-        "atb1_gear-large"
+        "atb1_gear-large",
+        "atb2_round-pulley-small",
+        "atb3_flat-mount"
     ],
 
     "atb1": [
@@ -56,5 +58,38 @@
         "atb2_timing-pulley-small", 
         "atb2_timing-spacer-large",
         "atb2_timing-spacer-small"
+    ],
+
+    "atb3": [
+        "atb3_flat-cable", 
+        "atb3_flat-clip-closed", 
+        "atb3_flat-clip-open", 
+        "atb3_flat-mount", 
+        "atb3_flat-ribbon-connector", 
+        "atb3_flat-tube", 
+        "atb3_mount", 
+        "atb3_thick-cable", 
+        "atb3_thick-clip-closed", 
+        "atb3_thick-clip-open", 
+        "atb3_thick-ethernet-connector", 
+        "atb3_thick-mount", 
+        "atb3_thick-tube", 
+        "atb3_thin-aux-connector", 
+        "atb3_thin-cable", 
+        "atb3_thin-clip-closed", 
+        "atb3_thin-clip-open", 
+        "atb3_thin-mount", 
+        "atb3_thin-tube" 
+    ],
+
+    "atb4": [
+        "atb4_2pin", 
+        "atb4_2pin-complete", 
+        "atb4_2pin-housing", 
+        "atb4_6pin", 
+        "atb4_6pin-complete", 
+        "atb4_6pin-housing", 
+        "atb4_corner-post", 
+        "atb4_elastic-retainer"
     ]
 }
