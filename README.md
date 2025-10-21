@@ -1,6 +1,6 @@
 # Manufacturing Objects & Assemblies Dataset v2 (MOADv2)   
 ![MOAD Data Pipeline](media/moadv2_pipeline.png)   
-This repository serves as an access point for the MOADv2 dataset. MOADv2 contains component data for NIST Assembly Task Boards (ATB) 1-4.  
+This repository serves as an access point for the MOADv2 dataset. MOADv2 contains component data for NIST Assembly Task Boards (ATB) 1-4. More information can be found on the [Official MOAD Website](https://www.robot-manipulation.org/nist-moad).  
    
 Within the config folder, there is **objects.json** which defines which objects/sets are available for download, and **downloader_config.json** which allows you to configure which object set you would like to download, the folder to download to, and which types of object data you would like to download.  
 Once **downloader_config.json** is configured as desired, simply run the downloader script via:   
