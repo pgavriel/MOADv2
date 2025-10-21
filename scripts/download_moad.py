@@ -1,6 +1,8 @@
 import os
 from os.path import join
 import json
+import time
+from datetime import timedelta
 import boto3
 from botocore import UNSIGNED
 from botocore.client import Config
@@ -91,6 +93,8 @@ class MOADv2_Downloader:
             input("YES: [Enter]\t\tNO: [Ctrl+C]")
             
         for obj in self.object_list:
+            obj_name = obj
+            download_start = time.time()
             obj_prefix = f"{obj}/"
             obj_local = os.path.join(self.target_dir, obj)
             print(f"\n📦 Processing object: {obj}")
@@ -196,7 +200,8 @@ class MOADv2_Downloader:
                     local_path = os.path.join(fused_local, "baked_texture.png")
                     self.download_file(s3_key, local_path)
 
-            print("\n\n\nDone.")
+            time_elapsed = time.time() - download_start
+            print(f"\n\n✅ Finished {obj_name} in {timedelta(seconds=time_elapsed)}")
         print("\n\n== Finished All Objects ==")
 
 # === MAIN === 
@@ -235,4 +240,7 @@ if __name__ == "__main__":
 
     # exit()
     # Download data
+    total_start = time.time()
     downloader.download_objects()
+    total_elapsed = time.time() - total_start
+    print(f"\n🏁 All downloads complete in {timedelta(seconds=total_elapsed)}")
