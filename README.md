@@ -29,4 +29,14 @@ The high resolution RGB data combined with pre-computed camera transforms may be
 
 ###### Synthetic Data Generation  
 The provided model reconstructions may be used for generating synthetic training data using tools like Unity Perception or NVIDIA Omniverse Replicator. This data can be used for training object detection models, segmentation models, grasp planners, etc.    
-  
+
+
+# Scripts
+We provide several optional scripts to give you more flexibility when working with the dataset.
+
+#### Generate URDF files:
+This script creates URDF models for objects in your downloaded dataset. URDF files are useful for simulation environments such as PyBullet, where URDF is the preferred model format.
+``` 
+python3 scripts/create_urdf_files.py --folder <folder_name>
+```
+Replace <folder_name> with the directory containing your downloaded dataset of objects you would like to use. 
