@@ -39,4 +39,17 @@ This script creates URDF models for objects in your downloaded dataset. URDF fil
 ``` 
 python3 scripts/create_urdf_files.py --folder <folder_name>
 ```
-Replace <folder_name> with the directory containing your downloaded dataset of objects you would like to use. 
+Replace <folder_name> with the directory containing your downloaded dataset of objects you would like to use.   
+
+#### Blender Mesh Post-Processing Scripts:  
+The purpose of these scripts is to automate mesh post-processing and file format conversion using Blenders python API.  
+**blender_convert_ply.py** and **blender_convert_cad_to_usd.py** can be called using Blender in the terminal like so:   
+```  
+blender --background --python {/path/to/convert_script.py} -- {/path/to/input/file}   
+```  
+The **blender_convert_ply.py** script was used to generate all of the cleaned meshes and blender file (*obj_mesh*,*usd_mesh*,*blender_file*) present in the MOADv2 dataset. These steps include applying a scale factor, centering the meshs origin, removing loose geometry, decimating geometry (in most cases with a factor of 0.1), generating a UV map, baking a texture map, and exporting the resulting meshes. **blender_convert_cad_to_usd.py** does less processing, only applying a scale factor, centering the mesh, and exporting to USD format so that they may be used with Omniverse Replicator (these are not currently included in the dataset, but can be generated as needed).  
+
+The corresponding scripts **blender_batch_convert_ply.py** and **blender_batch_cad_to_usd.py** are used to run the previously described conversion scripts on batches of models at once. They search a root_directory for a specified file name pattern, and assemble a list of files to process, then call a subprocess to run the conversion scripts with each of those files. Currently, these scripts need to be configured directly, rather than being nicely parameterized (which will be fixed in the future), and they can be ran via:  
+```
+python3 {/path/to/batch_script.py} 
+```   
